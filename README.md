@@ -181,15 +181,17 @@ No code changes needed. LiteLLM handles the switch transparently.
 
 ---
 
-## Desktop App (Windows)
+## Desktop App (Cross-Platform)
 
-Don't want to clone and set up Python? Download the pre-built desktop app:
+Don't want to clone and set up Python? Download the pre-built desktop app for your operating system:
 
 1. Go to the [Releases](https://github.com/vikranthbandaru/Cognify/releases) page
-2. Download `Cognify-Windows-v1.0.zip`
-3. Extract the zip
-4. Install [Ollama](https://ollama.com) and run `ollama pull mistral`
-5. Double-click `Cognify.exe` — the app opens in your browser automatically
+2. Download the package for your OS (`Cognify-Windows-v1.0.zip`, `Cognify-macos-latest-v1.0.tar.gz`, or `Cognify-ubuntu-latest-v1.0.tar.gz`)
+3. Extract the package
+4. Install [Ollama](https://ollama.com) and run `ollama pull mistral` in your terminal
+5. Run the executable (`Cognify.exe` on Windows, or the `Cognify` executable file on macOS/Linux) — the app opens in your browser automatically.
+
+*(Note: Depending on your OS, you may get a security warning from Windows SmartScreen or macOS Gatekeeper because this open-source app is not digitally signed. It is entirely safe to click "More Info -> Run anyway" on Windows, or "Right-click -> Open" on macOS).*
 
 ---
 
