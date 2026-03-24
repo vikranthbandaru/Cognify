@@ -1,0 +1,48 @@
+name: Build Desktop Apps
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build Executable
+        run: python build_exe.py
+
+      - name: Zip Release (Windows)
+        if: runner.os == 'Windows'
+        run: Compress-Archive -Path dist\Cognify -DestinationPath Cognify-Windows-v1.0.zip -Force
+
+      - name: Tar Release (macOS/Linux)
+        if: runner.os != 'Windows'
+        run: |
+          cd dist
+          tar -czvf ../Cognify-${{ runner.os }}-v1.0.tar.gz Cognify
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        if: github.event_name == 'release'
+        with:
+          files: |
+            Cognify-*.zip
+            Cognify-*.tar.gz

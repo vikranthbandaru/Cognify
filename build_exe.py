@@ -35,6 +35,10 @@ def main():
         "--collect-all", "streamlit",
         "--collect-all", "altair",
         "--collect-all", "litellm",
+        "--collect-all", "tiktoken",
+        "--copy-metadata", "tiktoken",
+        "--hidden-import", "tiktoken_ext.openai_public",
+        "--hidden-import", "tiktoken_ext.bpe",
         "launcher.py",
     ]
 

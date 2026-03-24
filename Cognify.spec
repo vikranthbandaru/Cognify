@@ -1,14 +1,18 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_all
+from PyInstaller.utils.hooks import copy_metadata
 
 datas = [('src', 'src'), ('.env', '.'), ('.streamlit', '.streamlit')]
 binaries = []
-hiddenimports = ['streamlit', 'litellm', 'fitz', 'trafilatura', 'altair', 'pandas', 'matplotlib']
+hiddenimports = ['streamlit', 'litellm', 'fitz', 'trafilatura', 'altair', 'pandas', 'matplotlib', 'tiktoken_ext.openai_public', 'tiktoken_ext.bpe']
+datas += copy_metadata('tiktoken')
 tmp_ret = collect_all('streamlit')
 datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 tmp_ret = collect_all('altair')
 datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 tmp_ret = collect_all('litellm')
+datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
+tmp_ret = collect_all('tiktoken')
 datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 
 

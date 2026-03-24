@@ -71,14 +71,14 @@ def main():
 
     print(f"[OK] Starting Cognify on http://localhost:{PORT} ...")
     
-    # Run Streamlit natively in the same process
-    # This prevents the infinite PyInstaller self-spawn loop
+    # Pass Streamlit settings via command-line arguments to bypass PyInstaller dev-mode check issues
     sys.argv = [
         "streamlit", "run", APP_PATH,
-        "--server.port", str(PORT),
-        "--server.headless", "true",
-        "--browser.gatherUsageStats", "false",
-        "--server.enableCORS", "false",
+        "--global.developmentMode=false",
+        f"--server.port={PORT}",
+        "--server.headless=true",
+        "--browser.gatherUsageStats=false",
+        "--server.enableCORS=false",
     ]
     
     try:

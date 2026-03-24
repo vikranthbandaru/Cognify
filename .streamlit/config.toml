@@ -1,3 +1,5 @@
+[global]
+developmentMode = false
 
 [browser]
 gatherUsageStats = false
