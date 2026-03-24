@@ -23,7 +23,6 @@ def main():
         "--noconfirm",                   # overwrite previous build without asking
         "--clean",
         "--add-data", f"src{os.pathsep}src",           # bundle entire src/ folder
-        "--add-data", f".env{os.pathsep}.",            # bundle .env
         "--add-data", f".streamlit{os.pathsep}.streamlit",
         "--hidden-import", "streamlit",
         "--hidden-import", "litellm",
@@ -41,6 +40,10 @@ def main():
         "--hidden-import", "tiktoken_ext.bpe",
         "launcher.py",
     ]
+
+    if os.path.exists(".env"):
+        cmd.insert(-1, "--add-data")
+        cmd.insert(-1, f".env{os.pathsep}.")
 
     print("Building Cognify.exe ...")
     print("This takes 3-5 minutes on first run.\n")
