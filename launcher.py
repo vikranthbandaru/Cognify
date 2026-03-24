@@ -48,39 +48,44 @@ def main():
     print("[OK] Ollama is running.")
 
     # ── 2. Start Streamlit ───────────────────────
-    python_exe = sys.executable
-    cmd = [
-        python_exe, "-m", "streamlit", "run", APP_PATH,
+    import threading
+    from streamlit.web.cli import main as st_main
+
+    def open_browser():
+        # Wait for the Streamlit server to be ready
+        for _ in range(20):
+            time.sleep(1)
+            try:
+                r = requests.get(f"http://localhost:{PORT}", timeout=2)
+                if r.status_code == 200:
+                    break
+            except Exception:
+                pass
+        
+        webbrowser.open(f"http://localhost:{PORT}")
+        print(f"[OK] Cognify is live at http://localhost:{PORT}")
+        print("    Close this window to stop the app.\n")
+
+    # Start the thread to open the browser
+    threading.Thread(target=open_browser, daemon=True).start()
+
+    print(f"[OK] Starting Cognify on http://localhost:{PORT} ...")
+    
+    # Run Streamlit natively in the same process
+    # This prevents the infinite PyInstaller self-spawn loop
+    sys.argv = [
+        "streamlit", "run", APP_PATH,
         "--server.port", str(PORT),
         "--server.headless", "true",
         "--browser.gatherUsageStats", "false",
         "--server.enableCORS", "false",
     ]
-
-    print(f"[OK] Starting Cognify on http://localhost:{PORT} ...")
-    proc = subprocess.Popen(cmd, cwd=BASE_DIR)
-
-    # ── 3. Wait for server to be ready ───────────
-    for _ in range(20):
-        time.sleep(1)
-        try:
-            r = requests.get(f"http://localhost:{PORT}", timeout=2)
-            if r.status_code == 200:
-                break
-        except Exception:
-            pass
-
-    # ── 4. Open browser ──────────────────────────
-    webbrowser.open(f"http://localhost:{PORT}")
-    print(f"[OK] Cognify is live at http://localhost:{PORT}")
-    print("    Close this window to stop the app.\n")
-
-    # ── 5. Keep alive until user closes ──────────
+    
     try:
-        proc.wait()
-    except KeyboardInterrupt:
-        print("\nShutting down Cognify...")
-        proc.terminate()
+        sys.exit(st_main())
+    except Exception as e:
+        print(f"\n[!] Error running Streamlit: {e}")
+        input("Press Enter to exit...")
 
 
 if __name__ == "__main__":
