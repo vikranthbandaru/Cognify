@@ -35,7 +35,6 @@ Cognify is a locally-run Q&A system that answers questions from two knowledge so
 - Required a live Apache Solr instance on a GCP VM to function at all. If the VM went down, the app broke.
 - Charged money for every query via the OpenAI API.
 - Shipped 104 Python packages, most of which were unused.
-- Had dead functions (`classify_topics1`, `simulate_response`) that were never called.
 - Showed analytics in a cramped sidebar with no interactivity.
 - Never showed which Wikipedia articles it actually used to answer your question.
 - Could only work with Wikipedia, no way to query your own documents.
