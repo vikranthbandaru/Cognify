@@ -39,6 +39,14 @@ jobs:
           cd dist
           tar -czvf ../Cognify-${{ runner.os }}-v1.0.tar.gz Cognify
 
+      - name: Upload Workflow Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cognify-${{ matrix.os }}-build
+          path: |
+            Cognify-*.zip
+            Cognify-*.tar.gz
+
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v2
         if: github.event_name == 'release'
