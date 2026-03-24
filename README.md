@@ -14,8 +14,6 @@ Cognify is a locally-run Q&A system that answers questions from two knowledge so
 | **LLM** | OpenAI GPT-3.5-Turbo (cloud, paid per query) | Any local model via Ollama (free forever) |
 | **Retrieval backend** | Apache Solr hosted on GCP (external server required) | Local JSON file + PageIndex trees, no server, no network |
 | **Document Q&A** | Not supported | Full pipeline: PDF parsing (PyMuPDF), web extraction (trafilatura), overlapping chunking, PageIndex RAG |
-| **API key storage** | Hardcoded in source code (critical security issue) | `.env` file, gitignored |
-| **Dead code** | `classify_topics1()`, `simulate_response()`, `call_openai_api()` | Removed |
 | **Bug** | `filter_topics` variable used before assignment in else branch | Fixed |
 | **Dependencies** | 104 packages (openai, pysolr, langchain, ragas, datasets, tiktoken...) | 10 packages |
 | **Internet required** | Yes, Solr server + OpenAI API on every query | No, fully offline after setup |
