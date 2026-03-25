@@ -191,7 +191,7 @@ Don't want to clone and set up Python? Download the pre-built desktop app for yo
 4. Install [Ollama](https://ollama.com) and run `ollama pull mistral` in your terminal
 5. Run the executable (`Cognify.exe` on Windows, or the `Cognify` executable file on macOS/Linux), the app opens in your browser automatically.
 
-*(Note: Depending on your OS, you may get a security warning from Windows SmartScreen or macOS Gatekeeper because this open-source app is not digitally signed. It is entirely safe to click "More Info -> Run anyway" on Windows, or "Right-click -> Open" on macOS).*
+*(Note: Depending on your OS, you may get a security warning from Windows SmartScreen or macOS Gatekeeper because this open-source app is not digitally signed. It is entirely safe to click "More Info -> Run anyway" on Windows, or "Right-click -> Open" on macOS or refer "Important Installation Notes (Security Warnings)" in the [Releases](https://github.com/vikranthbandaru/Cognify/releases) page for more details.)*
 
 ---
 ## App Interface Screenshots
