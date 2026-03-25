@@ -194,9 +194,13 @@ Don't want to clone and set up Python? Download the pre-built desktop app for yo
 *(Note: Depending on your OS, you may get a security warning from Windows SmartScreen or macOS Gatekeeper because this open-source app is not digitally signed. It is entirely safe to click "More Info -> Run anyway" on Windows, or "Right-click -> Open" on macOS).*
 
 ---
+## App Interface Screenshots
+<img width="2858" height="1620" alt="Chat_Page" src="https://github.com/user-attachments/assets/e3671a8e-4770-4ffb-b958-d3f37097b1f7" />
+<img width="2866" height="1620" alt="My_Documents_Page" src="https://github.com/user-attachments/assets/be1fb859-a202-4de3-882f-407846b54609" />
+
 
 ## Demo
 
-[Watch the demo video on Google Drive](https://drive.google.com/file/d/1BQER9_mGMLbQq6ZQiHBnUi1jEwZ04U7A/view)
+[Watch the demo video on Google Drive](https://drive.google.com/file/d/1DWPj3MOcAeob7z3M4Kg8tOFuTL3KTe2j/view?usp=sharing)
 
 ---
